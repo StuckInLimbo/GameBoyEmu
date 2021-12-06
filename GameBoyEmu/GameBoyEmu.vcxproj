@@ -150,10 +150,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CPU.h" />
+    <ClInclude Include="GPU.h" />
     <ClInclude Include="Memory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPU.c" />
+    <ClCompile Include="GPU.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Memory.c" />
   </ItemGroup>

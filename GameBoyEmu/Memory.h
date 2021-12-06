@@ -4,13 +4,13 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-typedef struct ConditionCodes {
-	uint8_t		z : 1;	//Zero
-	uint8_t		n : 1;	//Subtract
-	uint8_t		h : 1;	//Half Carry
-	uint8_t		c : 1;	//Carry
-	uint8_t		pad : 4;
-} ConditionCodes;
+//typedef struct ConditionCodes {
+//	uint8_t		z : 1;	//Zero
+//	uint8_t		n : 1;	//Subtract
+//	uint8_t		h : 1;	//Half Carry
+//	uint8_t		c : 1;	//Carry
+//	uint8_t		pad : 4;
+//} ConditionCodes;
 
 /* The Flag Register consists of the following bits:
 * 7 6 5 4 3 2 1 0
@@ -31,25 +31,46 @@ typedef struct ConditionCodes {
 *	register A is the smaller value when executing the CP instruction
 */
 
-typedef struct StateGB {
-	uint8_t		a;	//REGISTER A
-	struct		ConditionCodes f; //Register F
-	uint8_t		b;	//REGISTER B
-	uint8_t		c;	//REGISTER C
-	uint8_t		d;	//REGISTER D
-	uint8_t		e;	//REGISTER E
-	uint8_t		h;	//REGISTER H
-	uint8_t		l;	//REGISTER L
-	//uint16_t	af; //REGISTER AF
-	//uint16_t	bc; //REGISTER BC
-	//uint16_t	de; //REGISTER DE
-	//uint16_t	hl; //REGISTER HL
+struct StateGB {
+	union {
+		struct {
+			uint8_t		f;	//REGISTER F
+			uint8_t		a;	//REGISTER A
+		};
+		uint16_t	af;		//REGISTER AF
+	};
+	union {
+		struct {
+			uint8_t		c;	//REGISTER C
+			uint8_t		b;	//REGISTER B
+		};
+		uint16_t	bc;		//REGISTER BC
+	};
+	union {
+		struct {
+			uint8_t		e;	//REGISTER E
+			uint8_t		d;	//REGISTER D
+		};
+		uint16_t	de;		//REGISTER DE
+	};
+	union {
+		struct {
+			uint8_t		l;	//REGISTER L
+			uint8_t		h;	//REGISTER H
+		};
+		uint16_t	hl;		//REGISTER HL
+	};
 	uint16_t	sp; //STACK POINTER
 	uint16_t	pc; //PROGRAM COUNTER
-	uint8_t*	memory; //Memory Ptr
+	uint8_t* memory; //Memory Ptr
 	uint8_t		interrupts; //Enable/Disable Interrupts
 	uint8_t		time; //Cycles since last instruction
-} StateGB;
+} extern state;
 
-uint8_t ReadMem(StateGB* state, uint16_t address);
-void WriteMem(StateGB* state, uint16_t address, uint8_t value);
+uint16_t ReadShort(uint16_t address);
+uint16_t ReadShortFromStack();
+uint8_t ReadMem(uint16_t address);
+void WriteMem(uint16_t address, uint8_t value);
+void WriteMem16(uint16_t address, uint16_t value);
+void WriteShort(uint16_t address, uint16_t value);
+void WriteShortToStack(uint16_t value);
