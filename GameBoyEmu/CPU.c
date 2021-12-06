@@ -408,7 +408,7 @@ int EmulateGBOp() {
 	uint8_t instruction = ReadMem(state.pc);
 	uint16_t operand = 0;
 
-	if (stopped) return;
+	if (stopped) return 0;
 
 	state.pc += 1;
 
@@ -429,13 +429,6 @@ int EmulateGBOp() {
 	}
 
 	ticks += instructionTicks[instruction];
-
-	if (state.pc == 0x282a) {
-		FILE* f;
-		fopen_s(&f, "tile0.bin", "wb");
-		fwrite(ReadMem(0x8000), 16, 1, f);
-		fclose(f);
-	}
 
 #if PRINT_OPS
 	if (instructions[instruction].operandLength)
@@ -460,9 +453,7 @@ void undefined(void) {
 	unsigned char instruction = ReadMem(state.pc);
 
 #ifdef _WIN32
-	char d[100];
-	sprintf_s(d, "Undefined instruction 0x%02x!\n\nCheck stdout for more details.", instruction);
-	//MessageBox(NULL, d, "Cinoop", MB_OK);
+	printf("Undefined instruction 0x%02x!\n\nCheck stdout for more details.", instruction);
 #else
 #ifndef PS4
 	printf("Undefined instruction 0x%02x!\n", instruction);

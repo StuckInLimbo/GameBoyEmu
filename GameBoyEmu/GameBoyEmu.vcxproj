@@ -78,14 +78,14 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\Intermediate</IntDir>
+    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\Intermediate\</IntDir>
     <TargetName>$(ProjectName)-$(Configuration)</TargetName>
     <IncludePath>$(SolutionDir)Depends\SDL2-2.0.16\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Depends\SDL2-2.0.16\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\Intermediate</IntDir>
+    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\Intermediate\</IntDir>
     <TargetName>$(ProjectName)-$(Configuration)</TargetName>
     <IncludePath>$(SolutionDir)Depends\SDL2-2.0.16\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Depends\SDL2-2.0.16\lib\x64;$(LibraryPath)</LibraryPath>
