@@ -62,7 +62,7 @@ struct StateGB {
 	};
 	uint16_t	sp; //STACK POINTER
 	uint16_t	pc; //PROGRAM COUNTER
-	uint8_t* memory; //Memory Ptr
+	uint8_t* 	memory; //Memory Ptr
 	uint8_t		interrupts; //Enable/Disable Interrupts
 	uint8_t		time; //Cycles since last instruction
 } extern state;

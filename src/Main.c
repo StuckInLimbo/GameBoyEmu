@@ -1,5 +1,4 @@
 #pragma once
-#include <SDL.h>
 #include "Memory.h"
 #include "CPU.h"
 
