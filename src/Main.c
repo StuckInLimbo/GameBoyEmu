@@ -1,6 +1,22 @@
 #pragma once
-#include "Memory.h"
-#include "CPU.h"
+// C/C++
+#include <vector>
+#include <cstdio>
+#include <string>
+#include <iostream>
+#include <chrono>
+#include <thread>
+
+// OpenGL
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+// ImGui
+#include "imgui/imgui_impl_opengl3.h"
+#include "imgui/imgui_impl_glfw.h"
+
+// Program
+#include "chip8.h"
 
 void ReadFileIntoMemoryAt( char* filename, uint32_t offset) {
 	FILE* f; 
